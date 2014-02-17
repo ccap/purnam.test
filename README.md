@@ -1,8 +1,8 @@
-# purnam.common
+# purnam.test
 
-[![Build Status](https://travis-ci.org/purnam/purnam.common.png?branch=master)](https://travis-ci.org/purnam/purnam.common)
+[![Build Status](https://travis-ci.org/purnam/purnam.test.png?branch=master)](https://travis-ci.org/purnam/purnam.test)
 
-Common utility functions for purnam
+Testing and documentation library for clojurescript
 
 ## Usage
 

@@ -1,5 +1,5 @@
 (defproject im.chit/purnam.test "0.4.0"
-  :description "Common utility functions for purnam"  
+  :description "Testing and documentation library for clojurescript"  
   :url "http://www.github.com/purnam/purnam.test"
   :license {:name "The MIT License"
             :url "http://opensource.org/licencses/MIT"}
