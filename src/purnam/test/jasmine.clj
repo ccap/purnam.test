@@ -3,7 +3,7 @@
             [purnam.common.expand :refer [expand]]
             [purnam.common.scope :refer [change-roots-map]]))
 
-(add-exclusions describe is)
+(add-exclusions describe is is-not)
 
 (def l list)
 
@@ -52,3 +52,14 @@
 (defn it-fn [desc body]
   (list 'js/it desc
         `(fn [] ~@body)))
+        
+(defn is-fn [actual expected]
+  (list '.toSatisfy (list 'js/expect (expand actual)) (expand expected) (str actual) (str expected)))
+
+(defn is-not-fn [actual expected]
+  (list '.toSatisfy 
+     (list '.-not 
+       (list 'js/expect (expand actual))) 
+             (expand expected) 
+             (str actual) 
+             (str expected)))

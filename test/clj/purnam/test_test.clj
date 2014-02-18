@@ -22,10 +22,10 @@
             <VAR2> <FORM1>]}
     <BODY>))
   => '(let [<SPEC> (js-obj)]
-       (aset <SPEC> "<VAR1>" <FORM1>)
-       (aset <SPEC> "<VAR2>" <FORM1>)
-       (js/describe "<DESCRIPTION>"
-                    (clojure.core/fn [] <BODY> nil))))
+        (aset <SPEC> "<VAR1>" <FORM1>)
+        (aset <SPEC> "<VAR2>" <FORM1>)
+        (js/describe "<DESCRIPTION>"
+                     (clojure.core/fn [] <BODY> nil))))
 
 (fact "describe FULL"
   (macroexpand-1
@@ -36,11 +36,10 @@
         (is <V>.array.<INDEX> <FN>))))
   => '(let [spec (js-obj)]
         (aset spec "<V>" (obj :array [1 2 3 4]))
-        (js/describe
-         "<DESC>"
-         (clojure.core/fn []
-           (it "<IT IS>"
-               (is (purnam.native/aget-in spec ["<V>" "array" "<INDEX>"]) <FN>)) nil))))
+        (js/describe "<DESC>"
+                     (clojure.core/fn []
+                       (it "<IT IS>"
+                           (is spec.<V>.array.<INDEX> <FN>)) nil))))
 
 
 (fact "beforeEach"
@@ -68,14 +67,14 @@
             <BODY>)))
 
 (fact "is"
-  '(is <FORM> <EXPECTED>)
+  (macroexpand-1
+    '(is <FORM> <EXPECTED>))
   =>
-  (expands-into
-   '(.toSatisfy (js/expect <FORM>) <EXPECTED> "<FORM>" "<EXPECTED>")))
+  '(.toSatisfy (js/expect <FORM>) <EXPECTED> "<FORM>" "<EXPECTED>"))
 
 (fact "is-not"
-  '(is-not <FORM> <EXPECTED>)
+
+  (macroexpand-1 '(is-not <FORM> <EXPECTED>))
   =>
-  (expands-into
-   '(.toSatisfy (.-not (js/expect <FORM>))
-                <EXPECTED> "<FORM>" "<EXPECTED>")))
+  '(.toSatisfy (.-not (js/expect <FORM>))
+                <EXPECTED> "<FORM>" "<EXPECTED>"))

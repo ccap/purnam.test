@@ -1,5 +1,5 @@
 (ns purnam.test.midje
-  (:require [purnam.test.jasmine :refer [describe-fn it-fn]]))
+  (:require [purnam.test.jasmine :refer [describe-fn it-fn is-fn]]))
 
 (defn find-arrow-positions
   ([forms] (find-arrow-positions forms [] 0))
@@ -24,12 +24,9 @@
          (filter #(not= ::nil %))
          (vec))))
 
-(defn fact-is [actual expected]
-  (list '.toSatisfy (list 'js/expect actual) expected (str actual) (str expected)))
-
 (defn fact-render [[type f1 f2]]
   (condp = type
-    ::is (fact-is f1 f2)
+    ::is (is-fn f1 f2)
     ::norm f1))
 
 (defn double-vec-map? [ele]

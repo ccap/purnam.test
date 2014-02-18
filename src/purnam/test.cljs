@@ -1,7 +1,10 @@
-(ns purnam.test.init)
+(ns purnam.test
+  (:require [purnam.test.common :refer [js-equals]]))
 
-(defn init-fn []
-  '(js/beforeEach
+(if-not (.-jasmine js/window)
+    (throw (ex-info "No Jasmine Framework Library Installed. Tests Cannot Proceed" {})))
+    
+(js/beforeEach
      (fn []
        (.addMatchers (js* "this")
          (let [o (js-obj)]
@@ -22,12 +25,13 @@
                               "\n  Expected: " notText texpected
                               "\n  Actual: " actualText)))
                  (cond (= (js/goog.typeOf expected) "array")
-                       (purnam.test.common/js-equals expected actual)
+                       (js-equals expected actual)
 
                        (fn? expected)
                        (expected actual)
 
                        :else
                        (or (= expected actual)
-                           (purnam.test.common/js-equals expected actual))))))
-            o)))))
+                           (js-equals expected actual))))))
+            o))))
+
