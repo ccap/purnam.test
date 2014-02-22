@@ -34,13 +34,15 @@
      :vars [<V> (obj :array [1 2 3 4])]}
     (it "<IT IS>"
         (is <V>.array.<INDEX> <FN>))))
-  => '(let [spec (js-obj)]
-        (aset spec "<V>" (obj :array [1 2 3 4]))
-        (js/describe "<DESC>"
-                     (clojure.core/fn []
-                       (it "<IT IS>"
-                           (is spec.<V>.array.<INDEX> <FN>)) nil))))
-
+  => 
+  '(let [spec (js-obj)] 
+    (aset spec "<V>" (obj :array [1 2 3 4])) 
+    (js/describe "<DESC>" 
+      (clojure.core/fn [] (it "<IT IS>" 
+          (purnam.test/is (purnam.common/aget-in spec ["<V>" "array" "<INDEX>"])
+            <FN> 
+            "'<V>.array.<INDEX>'" 
+            "'<FN>'")) nil))))
 
 (fact "beforeEach"
   (macroexpand-1

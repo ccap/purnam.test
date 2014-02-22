@@ -1,5 +1,6 @@
 (ns purnam.test.midje
-  (:require [purnam.test.jasmine :refer [describe-fn it-fn is-fn]]))
+  (:require [purnam.common :refer :all]
+            [purnam.test.jasmine :refer [describe-fn it-fn is-fn]]))
 
 (defn find-arrow-positions
   ([forms] (find-arrow-positions forms [] 0))
@@ -17,16 +18,18 @@
                 ::nil
 
                 (and (idxs i) (>= (dec i) 0))
-                [::is (nth forms (dec i)) (nth forms (inc i))]
+                (let [actual (nth forms (dec i))
+                      expected (nth forms (inc i))]
+                  [::is actual expected (str "'" actual "'") (str "'" expected "'")])
 
                 :else
                 [::norm (nth forms i)]))
          (filter #(not= ::nil %))
          (vec))))
 
-(defn fact-render [[type f1 f2]]
+(defn fact-render [[type f1 f2 f3 f4]]
   (condp = type
-    ::is (is-fn f1 f2)
+    ::is `(purnam.test/is ~f1 ~f2 ~f3 ~f4)
     ::norm f1))
 
 (defn double-vec-map? [ele]
@@ -47,6 +50,6 @@
 
               :else [{} (cons opts? body)])
         fgrps (fact-groups body)]
-    (describe-fn opts?
-                 [(it-fn ""
-                         (map fact-render fgrps))])))
+    `(purnam.test/describe ~opts?
+                 (purnam.test/it ""
+                      ~@(map fact-render fgrps)))))

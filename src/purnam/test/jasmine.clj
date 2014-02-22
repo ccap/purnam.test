@@ -2,8 +2,8 @@
   (:require [purnam.common :refer :all]
             [purnam.common.expand :refer [expand]]
             [purnam.common.scope :refer [change-roots-map]]))
-
-(add-exclusions describe is is-not)
+            
+(def ^:dynamic *current-roots* nil)
 
 (def l list)
 
@@ -29,6 +29,20 @@
                  [v (symbol (str spec "." v))])
                 bindings))))
 
+(defn describe-expand-is [body]
+  (clojure.walk/postwalk
+    (fn [form]
+       (if (and (list? form)
+                (or (= 'is (first form))
+                    (= 'purnam.test/is (first form)))
+                (not= 5 (count form)))
+        (let [[actual expected] (rest form)
+              tactual (str "'" actual "'")
+              texpected (str "'" expected "'")]
+           (concat ['purnam.test/is actual expected] [tactual texpected]))
+        form))
+    body))
+
 (defn describe-fn [options body]
   (let [[options body]
         (if (hash-map? options)
@@ -40,7 +54,7 @@
              (describe-bind-vars spec vars)
              (l (l 'js/describe doc
                    `(fn [] ~@(change-roots-map
-                             body
+                               (describe-expand-is body)
                              (describe-roots-map spec vars))
                       nil)))))))
 
@@ -52,14 +66,28 @@
 (defn it-fn [desc body]
   (list 'js/it desc
         `(fn [] ~@body)))
-        
-(defn is-fn [actual expected]
-  (list '.toSatisfy (list 'js/expect (expand actual)) (expand expected) (str actual) (str expected)))
 
-(defn is-not-fn [actual expected]
-  (list '.toSatisfy 
-     (list '.-not 
-       (list 'js/expect (expand actual))) 
-             (expand expected) 
-             (str actual) 
-             (str expected)))
+(defn is-fn 
+  ([actual expected]
+    (is-fn actual expected 
+      (str actual) 
+      (str expected)))
+  ([actual expected tactual texpected]
+    (list '.toSatisfy 
+      (list 'js/expect actual)
+      expected
+      tactual 
+      texpected)))
+
+(defn is-not-fn 
+  ([actual expected]
+    (is-not-fn actual expected 
+      (str actual) 
+      (str expected)))
+  ([actual expected tactual texpected]    
+    (list '.toSatisfy
+       (list '.-not
+         (list 'js/expect actual))
+       expected
+       tactual
+       texpected)))
