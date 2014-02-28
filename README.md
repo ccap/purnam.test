@@ -8,7 +8,7 @@ Testing with Karma and Clojurescript
 
 Stable Version: 
 
-    [im.chit/purnam.test "0.4.0"]
+    [im.chit/purnam.test "0.4.1"]
 
 Documentation:
 
