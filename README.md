@@ -2,14 +2,20 @@
 
 [![Build Status](https://travis-ci.org/purnam/purnam.test.png?branch=master)](https://travis-ci.org/purnam/purnam.test)
 
-Testing and documentation library for clojurescript
+Testing with Karma and Clojurescript
 
 ## Usage
 
-TBD
+Stable Version: 
+
+    [im.chit/purnam.test "0.4.0"]
+
+Documentation:
+
+- [API](http://purnam.github.io/purnam.test/)
 
 ## License
 
-Copyright © 2014 Chris
+Copyright © 2014 Chris Zheng
 
 Distributed under the The MIT License.
