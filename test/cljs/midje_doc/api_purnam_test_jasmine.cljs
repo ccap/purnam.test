@@ -1,15 +1,16 @@
 (ns midje-doc.api.purnam-test
   (:use-macros [purnam.test :only [describe is it is-not fact facts]]))
 
-
 [[:chapter {:title "purnam.test" :tag "purnam-test"}]]
 
 [[:section {:title "init"}]]
 "All tests require the following within the namespace declaration."
 
 (comment 
-  (:require [purnam.core])
+  (:require [purnam.test])
   (:use-macros [purnam.test :only [describe it is is-not]]))
+
+"PLEASE NOTE: The line `(:require [purnam.test])` must be placed inside your namespace. This configures jasmine with the correct checker so that tests can be run."
 
 [[:section {:title "describe"}]]
 

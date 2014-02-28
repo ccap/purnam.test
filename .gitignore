@@ -14,3 +14,4 @@ pom.xml.asc
 purnam.test.js
 .#*
 .DS_Store
+/doc

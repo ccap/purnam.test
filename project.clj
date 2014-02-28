@@ -1,5 +1,5 @@
 (defproject im.chit/purnam.test "0.4.0"
-  :description "Testing and documentation library for clojurescript"  
+  :description "Testing with Karma and Clojurescript"  
   :url "http://www.github.com/purnam/purnam.test"
   :license {:name "The MIT License"
             :url "http://opensource.org/licencses/MIT"}
@@ -10,6 +10,14 @@
                                   [midje "1.6.0"]]
                    :plugins [[lein-cljsbuild "1.0.0"]
                              [lein-midje "3.1.3"]]}}
+
+  :documentation {:files {"doc/index"
+                        {:input "test/cljs/midje_doc/purnam_test_guide.clj"
+                         :title "purnam.test"
+                         :sub-title "Testing with Karma and Clojurescript"
+                         :author "Chris Zheng"
+                         :email  "z@caudate.me"
+                         :tracking "UA-31320512-2"}}}
   :cljsbuild {:builds [{:source-paths ["src", "test/cljs"]
                        :compiler {:output-to "test/purnam.test.js"
                                   :optimizations :whitespace

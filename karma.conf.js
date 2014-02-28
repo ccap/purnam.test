@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Sat Feb 15 2014 08:31:23 GMT+1100 (EST)
+// Generated on Fri Feb 28 2014 11:11:15 GMT+1100 (EST)
 
 module.exports = function(config) {
   config.set({
@@ -10,6 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     frameworks: ['jasmine'],
+
 
     // list of files / patterns to load in the browser
     files: [
@@ -53,7 +54,7 @@ module.exports = function(config) {
     // - Safari (only Mac; has to be installed with `npm install karma-safari-launcher`)
     // - PhantomJS
     // - IE (only Windows; has to be installed with `npm install karma-ie-launcher`)
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
 
 
     // If browser does not capture in given timeout [ms], kill it
