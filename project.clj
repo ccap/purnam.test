@@ -20,6 +20,6 @@
                          :tracking "UA-31320512-2"}}}
                          
   :cljsbuild {:builds [{:source-paths ["src", "test/cljs"]
-                       :compiler {:output-to "test/purnam.test.js"
+                       :compiler {:output-to "target/purnam.test.js"
                                   :optimizations :whitespace
                                   :pretty-print true}}]})
