@@ -1,4 +1,4 @@
-(ns midje-doc.api.purnam-test
+(ns midje-doc.purnam-test.test-jasmine
   (:use-macros [purnam.test :only [describe is it is-not fact facts runs waits-for]]))
 
 [[:section {:title "init"}]]

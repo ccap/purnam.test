@@ -1,4 +1,4 @@
-(ns purnam.test-test-midje
+(ns purnam.test.test-midje
   (:use midje.sweet)
   (:require [purnam.test.midje :refer :all]))
 

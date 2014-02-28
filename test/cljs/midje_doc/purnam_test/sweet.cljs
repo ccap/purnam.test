@@ -1,4 +1,4 @@
-(ns midje-doc.api.purnam-test-sweet
+(ns midje-doc.purnam-test.test-jasmine
   (:require [purnam.test])
   (:use-macros [purnam.common :only [aset-in]]
                [purnam.test :only [describe is it fact facts]]))

@@ -1,4 +1,4 @@
-(ns midje-doc.purnam-native-guide)
+(ns midje-doc.purnam-test.guide)
 
 [[:chapter {:title "Introduction"}]]
 
@@ -66,7 +66,7 @@ Run in another window: `karma start`.
 
 Note that you will have to restart karma if the *.js file was not found before the test runner starts. The following video shows the entire process in detail:
 
-[![karma-testing](https://raw.github.com/purnam/example.purnam.test/master/karma-testing.png)](http://www.youtube.com/watch?v=mhBqjJUYY6w)
+[![karma-testing](https://raw.github.com/purnam/example.purnam.test/master/karma-testing.png)](http://www.youtube.com/watch?v=9mryE5vggR0&feature=youtu.be)
 "
 
 [[:chapter {:title "Generating Documentation"}]]
@@ -96,6 +96,6 @@ Running in a third window: `lein midje-doc` will watch files for changes and gen
 
 [[:chapter {:title "API" :tag "purnam-test"}]]
 
-[[:file {:src "test/cljs/midje_doc/api_purnam_test_jasmine.cljs"}]]
+[[:file {:src "test/cljs/midje_doc/purnam_test/jasmine.cljs"}]]
     
-[[:file {:src "test/cljs/midje_doc/api_purnam_test_sweet.cljs"}]]
+[[:file {:src "test/cljs/midje_doc/purnam_test/sweet.cljs"}]]
