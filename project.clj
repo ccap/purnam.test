@@ -1,4 +1,4 @@
-(defproject im.chit/purnam.test "0.4.1"
+(defproject im.chit/purnam.test "0.4.3"
   :description "Testing with Karma and Clojurescript"  
   :url "http://www.github.com/purnam/purnam.test"
   :license {:name "The MIT License"
