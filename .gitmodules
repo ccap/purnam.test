@@ -1,4 +1,4 @@
 [submodule "doc"]
 	path = doc
-	url = git@github.com:purnam/purnam.test.git
+	url = https://github.com/purnam/purnam.test.git
 	branch = gh-pages
